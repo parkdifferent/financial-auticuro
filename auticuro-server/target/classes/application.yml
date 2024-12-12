@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: auticuro-wallet
+  datasource:
+    url: jdbc:mysql://localhost:3306/auticuro?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.auticuro.core.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 8080
+
+raft:
+  server:
+    id: server1
+    port: 8000
+    storage-dir: /tmp/raft-wallet
+  group:
+    id: 02511d47-d67c-49a3-9011-abb3109a44c1
