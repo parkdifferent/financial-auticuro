@@ -1,6 +1,6 @@
 package com.auticuro.server.grpc;
 
-import com.auticuro.core.service.TransferService;
+import com.auticuro.core.service.TransferRestService;
 import com.auticuro.proto.*;
 import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.List;
 public class TransferServiceImpl extends TransferServiceGrpc.TransferServiceImplBase {
     
     @Autowired
-    private TransferService transferService;
+    private TransferRestService transferRestService;
 
     @Override
     public void transfer(TransferRequest request, StreamObserver<TransferResponse> responseObserver) {
         try {
-            transferService.transfer(
+            transferRestService.transfer(
                 request.getTransactionId(),
                 request.getFromAccount(),
                 request.getToAccount(),
@@ -50,7 +50,7 @@ public class TransferServiceImpl extends TransferServiceGrpc.TransferServiceImpl
         
         for (TransferRequest transfer : request.getTransfersList()) {
             try {
-                transferService.transfer(
+                transferRestService.transfer(
                     transfer.getTransactionId(),
                     transfer.getFromAccount(),
                     transfer.getToAccount(),

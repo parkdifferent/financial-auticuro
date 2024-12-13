@@ -6,11 +6,13 @@ import com.auticuro.core.exception.AccountLockedException;
 import com.auticuro.core.exception.BalanceLimitException;
 import com.auticuro.core.mapper.AccountMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Component
 public class BalanceMap {
     private final ConcurrentHashMap<String, Account> accountCache;
     private final AccountMapper accountMapper;

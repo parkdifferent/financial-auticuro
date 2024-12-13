@@ -1,5 +1,6 @@
 com/auticuro/server/controller/WalletController.class
 com/auticuro/server/config/RaftServerConfig.class
+com/auticuro/server/AuticuroServerApplication.class
 com/auticuro/server/config/SecurityConfig.class
 com/auticuro/server/config/SwaggerConfig.class
 com/auticuro/server/config/GrpcServerConfig.class

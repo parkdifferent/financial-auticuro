@@ -1,8 +1,8 @@
 package com.auticuro.server.controller;
 
 import com.auticuro.core.entity.Account;
-import com.auticuro.core.service.AccountService;
-import com.auticuro.core.service.TransferService;
+import com.auticuro.core.service.AccountRestService;
+import com.auticuro.core.service.TransferRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,10 @@ import java.util.Map;
 public class WalletController {
 
     @Autowired
-    private AccountService accountService;
+    private AccountRestService accountService;
 
     @Autowired
-    private TransferService transferService;
+    private TransferRestService transferRestService;
 
     @PostMapping("/accounts")
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
@@ -63,7 +63,7 @@ public class WalletController {
         @SuppressWarnings("unchecked")
         Map<String, String> metadata = (Map<String, String>) request.get("metadata");
 
-        transferService.transfer(transactionId, fromAccount, toAccount, amount, assetType, metadata);
+        transferRestService.transfer(transactionId, fromAccount, toAccount, amount, assetType, metadata);
         
         Map<String, Object> response = new HashMap<>();
         response.put("success", true);
@@ -81,7 +81,7 @@ public class WalletController {
         for (Map<String, Object> transfer : transfers) {
             Map<String, Object> result = new HashMap<>();
             try {
-                transferService.transfer(
+                transferRestService.transfer(
                     (String) transfer.get("transactionId"),
                     (String) transfer.get("fromAccount"),
                     (String) transfer.get("toAccount"),

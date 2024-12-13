@@ -6,6 +6,7 @@
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/grpc/AccountServiceImpl.java
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/query/service/BalanceHistoryService.java
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/query/repository/AccountBalanceViewRepository.java
+/Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/AuticuroServerApplication.java
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/metrics/WalletMetrics.java
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/query/model/AccountBalanceView.java
 /Users/phoenix/Documents/myproject/financial-auticuro/auticuro-server/src/main/java/com/auticuro/server/config/RaftServerConfig.java

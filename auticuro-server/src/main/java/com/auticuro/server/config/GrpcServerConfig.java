@@ -4,6 +4,7 @@ import com.auticuro.server.grpc.AccountServiceImpl;
 import com.auticuro.server.grpc.TransferServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,8 @@ public class GrpcServerConfig {
     }
 
     @Bean
-    public Server grpcServer(AccountServiceImpl accountService, TransferServiceImpl transferService) {
+    public Server grpcServer(@Qualifier("grpcAccountService") AccountServiceImpl accountService,
+                             @Qualifier("grpcTransferService") TransferServiceImpl transferService) {
         return ServerBuilder.forPort(grpcPort)
                 .addService(accountService)
                 .addService(transferService)

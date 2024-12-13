@@ -4,11 +4,13 @@ import com.auticuro.core.entity.BalanceChangeEvent;
 import com.auticuro.core.mapper.BalanceChangeEventMapper;
 import com.auticuro.proto.TransferRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Component
 public class EventStore {
     private final BalanceChangeEventMapper eventMapper;
     private final ObjectMapper objectMapper;

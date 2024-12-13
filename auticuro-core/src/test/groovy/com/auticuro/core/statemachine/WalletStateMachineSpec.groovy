@@ -6,6 +6,7 @@ import com.auticuro.core.exception.InsufficientBalanceException
 import com.auticuro.proto.TransferRequest
 import com.auticuro.proto.TransferResponse
 import org.apache.ratis.protocol.Message
+import org.apache.ratis.proto.RaftProtos.LogEntryProto
 import org.apache.ratis.statemachine.TransactionContext
 import spock.lang.Specification
 
@@ -18,7 +19,10 @@ class WalletStateMachineSpec extends Specification {
 
     def setup() {
         walletStateMachine.dedupStore = Mock(DedupStore)
-        walletStateMachine.balanceMap = Mock(BalanceMap)
+        walletStateMachine.balanceMap = Mock(BalanceMap) {
+            lock(_) >> {}
+            setBalance(_, _) >> {}
+        }
         walletStateMachine.eventStore = Mock(EventStore)
     }
 

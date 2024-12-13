@@ -1,7 +1,7 @@
 package com.auticuro.server.grpc;
 
 import com.auticuro.core.entity.Account;
-import com.auticuro.core.service.AccountService;
+import com.auticuro.core.service.AccountRestService;
 import com.auticuro.proto.*;
 import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class AccountServiceImpl extends AccountServiceGrpc.AccountServiceImplBase {
     
     @Autowired
-    private AccountService accountService;
+    private AccountRestService accountRestService;
 
     @Override
     public void createAccount(CreateAccountRequest request, StreamObserver<CreateAccountResponse> responseObserver) {
@@ -24,7 +24,7 @@ public class AccountServiceImpl extends AccountServiceGrpc.AccountServiceImplBas
             account.setUpperLimit(new BigDecimal(request.getUpperLimit()));
             account.setLowerLimit(new BigDecimal(request.getLowerLimit()));
             
-            Account created = accountService.createAccount(account);
+            Account created = accountRestService.createAccount(account);
             
             responseObserver.onNext(CreateAccountResponse.newBuilder()
                 .setSuccess(true)
@@ -43,7 +43,7 @@ public class AccountServiceImpl extends AccountServiceGrpc.AccountServiceImplBas
     @Override
     public void getAccount(GetAccountRequest request, StreamObserver<GetAccountResponse> responseObserver) {
         try {
-            Account account = accountService.getAccount(request.getAccountNumber());
+            Account account = accountRestService.getAccount(request.getAccountNumber());
             
             responseObserver.onNext(GetAccountResponse.newBuilder()
                 .setSuccess(true)
@@ -62,7 +62,7 @@ public class AccountServiceImpl extends AccountServiceGrpc.AccountServiceImplBas
     @Override
     public void lockAccount(LockAccountRequest request, StreamObserver<LockAccountResponse> responseObserver) {
         try {
-            accountService.lockAccount(request.getAccountNumber());
+            accountRestService.lockAccount(request.getAccountNumber());
             
             responseObserver.onNext(LockAccountResponse.newBuilder()
                 .setSuccess(true)
@@ -80,7 +80,7 @@ public class AccountServiceImpl extends AccountServiceGrpc.AccountServiceImplBas
     @Override
     public void unlockAccount(UnlockAccountRequest request, StreamObserver<UnlockAccountResponse> responseObserver) {
         try {
-            accountService.unlockAccount(request.getAccountNumber());
+            accountRestService.unlockAccount(request.getAccountNumber());
             
             responseObserver.onNext(UnlockAccountResponse.newBuilder()
                 .setSuccess(true)

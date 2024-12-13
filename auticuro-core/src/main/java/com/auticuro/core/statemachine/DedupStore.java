@@ -3,12 +3,14 @@ package com.auticuro.core.statemachine;
 import com.auticuro.core.entity.DedupRecord;
 import com.auticuro.core.mapper.DedupRecordMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Component
 public class DedupStore {
     private final Set<String> dedupCache;
     private final DedupRecordMapper dedupRecordMapper;
